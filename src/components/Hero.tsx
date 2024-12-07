@@ -19,9 +19,6 @@ export function Hero() {
                 <button className="w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-white bg-primary hover:bg-primary-dark transition-colors duration-200 md:py-4 md:text-lg md:px-10">
                   Start Printing
                 </button>
-                <button className="mt-3 sm:mt-0 w-full sm:w-auto flex items-center justify-center px-8 py-3 border border-secondary text-base font-medium rounded-lg text-secondary bg-white hover:bg-secondary hover:text-white transition-colors duration-200 md:py-4 md:text-lg md:px-10">
-                  Learn More
-                </button>
               </div>
             </div>
           </main>
