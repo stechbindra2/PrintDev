@@ -1,0 +1,110 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model User {
+  id            String    @id @default(uuid())
+  email         String    @unique
+  password      String
+  name          String
+  role          String    // 'admin', 'printer', 'designer', 'delivery'
+  shopName      String?
+  address       String?
+  phone         String?
+  isVerified    Boolean   @default(false)
+  isActive      Boolean   @default(true)
+  rating        Float?
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+  orders        Order[]
+  services      Service[]
+  deliveries    Delivery[]
+  wallet        Wallet?
+  payments      Payment[]
+}
+
+model Service {
+  id          String   @id @default(uuid())
+  name        String
+  description String
+  price       Float
+  type        String   // 'print' or 'design'
+  isActive    Boolean  @default(true)
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  orders      Order[]
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model Order {
+  id              String    @id @default(uuid())
+  status          String    // 'pending', 'preparing', 'ready', 'assigned', 'picked', 'delivered', 'cancelled'
+  totalAmount     Float
+  paymentType     String    // 'cash' or 'online'
+  isPaid          Boolean   @default(false)
+  userId          String
+  user            User      @relation(fields: [userId], references: [id])
+  serviceId       String
+  service         Service   @relation(fields: [serviceId], references: [id])
+  customerName    String
+  customerPhone   String?
+  customerEmail   String?
+  deliveryAddress String?
+  delivery        Delivery?
+  payment         Payment?
+  createdAt       DateTime  @default(now())
+  updatedAt       DateTime  @updatedAt
+}
+
+model Delivery {
+  id          String    @id @default(uuid())
+  orderId     String    @unique
+  order       Order     @relation(fields: [orderId], references: [id])
+  deliveryId  String
+  delivery    User      @relation(fields: [deliveryId], references: [id])
+  status      String    // 'assigned', 'picked', 'delivered'
+  pickedAt    DateTime?
+  deliveredAt DateTime?
+  rating      Float?
+  feedback    String?
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+}
+
+model Wallet {
+  id        String   @id @default(uuid())
+  userId    String   @unique
+  user      User     @relation(fields: [userId], references: [id])
+  balance   Float    @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  orderId       String?  @unique
+  order         Order?   @relation(fields: [orderId], references: [id])
+  userId        String
+  user          User     @relation(fields: [userId], references: [id])
+  amount        Float
+  method        String   // 'card', 'wallet', 'cash'
+  status        String   // 'pending', 'completed', 'failed'
+  transactionId String?
+  errorMessage  String?
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model AdminSettings {
+  id            String   @id @default(uuid())
+  key           String   @unique
+  value         String
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
