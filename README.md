@@ -32,32 +32,61 @@ To get started with PrintDev, follow these steps:
    git clone https://github.com/stechbindra2/PrintDev.git
    cd PrintDev
 
-   Install the dependencies:
+  # PrintDev
 
-npm install
-Public code references from 5 repositories
-Set up environment variables (create a .env file based on the .env.example provided).
+## Installation
 
-Run the development server:
+1. Install the dependencies:
+   ```bash
+   npm install
+   ```
+   Public code references from 5 repositories.
 
+2. Set up environment variables:
+   - Create a `.env` file based on the `.env.example` provided.
+
+## Running the Development Server
+
+Start the development server:
+```bash
 npm run dev
-Public code references from 5 repositories
-Usage
-After setting up the project and running the development server, you can access the platform at http://localhost:3000.
+```
+Public code references from 5 repositories.
 
-Scripts
-npm run dev: Starts the development server using Vite.
-npm run build: Builds the project for production.
-npm run lint: Runs ESLint to check for linting errors.
-npm run preview: Previews the built project.
-npm run server: Starts the backend server.
-Contributing
+## Usage
+
+After setting up the project and running the development server, you can access the platform at:
+```
+http://localhost:3000
+```
+
+## Scripts
+
+- `npm run dev`: Starts the development server using Vite.
+- `npm run build`: Builds the project for production.
+- `npm run lint`: Runs ESLint to check for linting errors.
+- `npm run preview`: Previews the built project.
+- `npm run server`: Starts the backend server.
+
+## Contributing
+
 We welcome contributions to PrintDev!
 
-Fork the repository.
-Create a new branch: git checkout -b feature/your-feature-name
-Make your changes and commit them: git commit -m 'Add some feature'
-Push to the branch: git push origin feature/your-feature-name
-Open a pull request.
-License
-This project is licensed under the MIT License. See the LICENSE file for details.
+1. Fork the repository.
+2. Create a new branch:
+   ```bash
+   git checkout -b feature/your-feature-name
+   ```
+3. Make your changes and commit them:
+   ```bash
+   git commit -m 'Add some feature'
+   ```
+4. Push to the branch:
+   ```bash
+   git push origin feature/your-feature-name
+   ```
+5. Open a pull request.
+
+## License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
